@@ -77,6 +77,14 @@ app.get('/recipes', (req, res) => {
   res.json(Recipes.get());
 })
 
+app.delete('/recipes/:itemId', (req, res) => {
+  Recipes.delete(req.params.itemId);
+  console.log(`Deleted recipe item \`${req.params.itemId}\``);
+//.end() ends the response process. If you need to respond with data, 
+//instead use methods such as res.send() and res.json().
+  res.status(204).end();
+});
+
 app.listen(process.env.PORT || 8080, () => {
   console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
 });
